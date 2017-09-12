@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Weather{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>查询历史</h1>
+	<br>
+	{% for i in history %}
+	    <div>
+		<p>{{i}}</p>
+	    </div>
+	{% endfor %}
+</div>
+
+{% endblock %}

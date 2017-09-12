@@ -1,0 +1,73 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Weather{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+<style> 
+body {text-align:center} 
+
+.div { 
+	margin:0 auto; 
+	width:400px; 
+	height:100px; 
+} 
+</style> 
+{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Weather</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="div">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+	    {% endfor %}
+		
+	    <br><br>
+    
+        {% block page_content %}{% endblock %} 
+
+	    <div>
+			<br><br>
+			<a href = '/history', target = "_blank">查询历史</a>|
+			<a href = "/help", target = "_blank">帮助</a>
+		</div>
+		    <br><br>
+		    <a href = "http://flask.pocoo.org/"><img
+src = "http://flask.pocoo.org/static/badges/powered-by-flask-s.png"
+atl = "powered by flask"
+title = "powered by Flask"></a>
+        </div>
+    </div>
+{% endblock %}
+	
+       
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
